@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="v5rnkK" name="SplitGrains" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildVST3" companyName="chisProjects">
+  <MAINGROUP id="MYWnNg" name="SplitGrains">
+    <GROUP id="{9052C9A4-6D7C-36F7-0CD3-4C425BED343C}" name="include">
+      <GROUP id="{FC7C6668-CD82-53BB-0A7E-660EAB5A20C8}" name="artff">
+        <GROUP id="{E29962BD-18DE-CC8D-BC56-2527DD5B1936}" name="buffer">
+          <FILE id="xvsM9Z" name="circular_frame_buffer.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/artff/buffer/circular_frame_buffer.h"/>
+          <FILE id="RzFZFV" name="circular_future_buffer.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/artff/buffer/circular_future_buffer.h"/>
+        </GROUP>
+        <FILE id="p9w9HA" name="abstract_filter.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/artff/abstract_filter.h"/>
+        <FILE id="FmB1im" name="semaphore.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/artff/semaphore.h"/>
+      </GROUP>
+      <GROUP id="{E2EDF00E-3D1D-E90D-3F61-2B99913EFAFC}" name="Eigen">
+        <GROUP id="{365F79CF-573D-97F1-657E-78AFED881EAB}" name="src">
+          <GROUP id="{1A1F432B-0C8E-614C-6F5E-326CE265A19F}" name="Cholesky">
+            <FILE id="OV6FG2" name="LDLT.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Cholesky/LDLT.h"/>
+            <FILE id="iMurq8" name="LLT.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Cholesky/LLT.h"/>
+            <FILE id="tlA26S" name="LLT_LAPACKE.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Cholesky/LLT_LAPACKE.h"/>
+          </GROUP>
+          <GROUP id="{EDF8A1F0-7E74-4E5A-788F-31B375CE2B35}" name="CholmodSupport">
+            <FILE id="S5IZXO" name="CholmodSupport.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/CholmodSupport/CholmodSupport.h"/>
+          </GROUP>
+          <GROUP id="{0DB62654-79AA-B98B-072C-E816B7EF9D0C}" name="Core">
+            <GROUP id="{852E54D0-1AFC-359C-FD28-20EE2ECC3E4E}" name="arch">
+              <GROUP id="{C242DE86-EDCE-38AA-1F6D-BA89DF8E0BBD}" name="AltiVec">
+                <FILE id="CDfQKS" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AltiVec/Complex.h"/>
+                <FILE id="btBaiC" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AltiVec/MathFunctions.h"/>
+                <FILE id="uhEwSi" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AltiVec/PacketMath.h"/>
+              </GROUP>
+              <GROUP id="{4B8499E4-F6C9-56F8-B3A0-8443E6A6661A}" name="AVX">
+                <FILE id="kkroCl" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX/Complex.h"/>
+                <FILE id="gtZ7wO" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX/MathFunctions.h"/>
+                <FILE id="PfKl9C" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX/PacketMath.h"/>
+                <FILE id="YBwqCv" name="TypeCasting.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX/TypeCasting.h"/>
+              </GROUP>
+              <GROUP id="{5BCC72C4-EF73-81BF-C1A4-1EFFD3A2F081}" name="AVX512">
+                <FILE id="y8WMTF" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX512/MathFunctions.h"/>
+                <FILE id="VHmlxJ" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/AVX512/PacketMath.h"/>
+              </GROUP>
+              <GROUP id="{7F39DC0F-272F-6538-AD7D-19C5D180537B}" name="CUDA">
+                <FILE id="ZydMNK" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/Complex.h"/>
+                <FILE id="wzGLAX" name="Half.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/Half.h"/>
+                <FILE id="oG6jQA" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/MathFunctions.h"/>
+                <FILE id="jXiPqS" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/PacketMath.h"/>
+                <FILE id="FBKSWS" name="PacketMathHalf.h" compile="0" resource="0"
+                      file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/PacketMathHalf.h"/>
+                <FILE id="wJPCbJ" name="TypeCasting.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/CUDA/TypeCasting.h"/>
+              </GROUP>
+              <GROUP id="{A8DE1BE1-0D41-4646-BD25-F298383503E0}" name="Default">
+                <FILE id="vSzXwc" name="ConjHelper.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/Default/ConjHelper.h"/>
+                <FILE id="aC71qJ" name="Settings.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/Default/Settings.h"/>
+              </GROUP>
+              <GROUP id="{2C16F78F-F13F-23F1-B520-055ED45B6742}" name="NEON">
+                <FILE id="ekhjId" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/NEON/Complex.h"/>
+                <FILE id="j6Alrh" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/NEON/MathFunctions.h"/>
+                <FILE id="XQKUIj" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/NEON/PacketMath.h"/>
+              </GROUP>
+              <GROUP id="{CD7C97AB-48C5-4FB5-DC5A-A8EE0639D853}" name="SSE">
+                <FILE id="TePVTv" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/SSE/Complex.h"/>
+                <FILE id="kEKRBO" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/SSE/MathFunctions.h"/>
+                <FILE id="aLENeg" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/SSE/PacketMath.h"/>
+                <FILE id="tH9x3g" name="TypeCasting.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/SSE/TypeCasting.h"/>
+              </GROUP>
+              <GROUP id="{9838E8C0-5171-37E9-3F45-F0A6A32F76BA}" name="ZVector">
+                <FILE id="kxKQhg" name="Complex.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/ZVector/Complex.h"/>
+                <FILE id="GueNyG" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/ZVector/MathFunctions.h"/>
+                <FILE id="rdRqa5" name="PacketMath.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/arch/ZVector/PacketMath.h"/>
+              </GROUP>
+            </GROUP>
+            <GROUP id="{3F7DD05A-D20C-2912-BB66-2F619959E5E7}" name="functors">
+              <FILE id="IuH867" name="AssignmentFunctors.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/AssignmentFunctors.h"/>
+              <FILE id="XOIpVM" name="BinaryFunctors.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/BinaryFunctors.h"/>
+              <FILE id="vrzVSi" name="NullaryFunctors.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/NullaryFunctors.h"/>
+              <FILE id="fwsN8B" name="StlFunctors.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/StlFunctors.h"/>
+              <FILE id="vlje5D" name="TernaryFunctors.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/TernaryFunctors.h"/>
+              <FILE id="e91A5F" name="UnaryFunctors.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/functors/UnaryFunctors.h"/>
+            </GROUP>
+            <GROUP id="{4B239F03-0468-6E93-4F86-1EDC2FE5A23B}" name="products">
+              <FILE id="fnWIEv" name="GeneralBlockPanelKernel.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h"/>
+              <FILE id="fsFY4N" name="GeneralMatrixMatrix.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixMatrix.h"/>
+              <FILE id="KCuVxP" name="GeneralMatrixMatrix_BLAS.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h"/>
+              <FILE id="BTG7x1" name="GeneralMatrixMatrixTriangular.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h"/>
+              <FILE id="mi7tTB" name="GeneralMatrixMatrixTriangular_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h"/>
+              <FILE id="mwilJn" name="GeneralMatrixVector.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixVector.h"/>
+              <FILE id="PSi2RE" name="GeneralMatrixVector_BLAS.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h"/>
+              <FILE id="GXNuNS" name="Parallelizer.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/Parallelizer.h"/>
+              <FILE id="O8rZxb" name="SelfadjointMatrixMatrix.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointMatrixMatrix.h"/>
+              <FILE id="FPNKuy" name="SelfadjointMatrixMatrix_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h"/>
+              <FILE id="lrUa3O" name="SelfadjointMatrixVector.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointMatrixVector.h"/>
+              <FILE id="ONnPrJ" name="SelfadjointMatrixVector_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h"/>
+              <FILE id="l64WwY" name="SelfadjointProduct.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointProduct.h"/>
+              <FILE id="CUOLEq" name="SelfadjointRank2Update.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/SelfadjointRank2Update.h"/>
+              <FILE id="B2g3Fj" name="TriangularMatrixMatrix.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularMatrixMatrix.h"/>
+              <FILE id="yJwBNj" name="TriangularMatrixMatrix_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h"/>
+              <FILE id="AiDpsL" name="TriangularMatrixVector.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularMatrixVector.h"/>
+              <FILE id="fulwcs" name="TriangularMatrixVector_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h"/>
+              <FILE id="KrlAJZ" name="TriangularSolverMatrix.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularSolverMatrix.h"/>
+              <FILE id="pp04H5" name="TriangularSolverMatrix_BLAS.h" compile="0"
+                    resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h"/>
+              <FILE id="yVLM6M" name="TriangularSolverVector.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/products/TriangularSolverVector.h"/>
+            </GROUP>
+            <GROUP id="{EBAA8EFF-8EE8-6CF2-5CDC-355FF882A23C}" name="util">
+              <FILE id="tTfYU3" name="BlasUtil.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/BlasUtil.h"/>
+              <FILE id="pU5qr7" name="Constants.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/Constants.h"/>
+              <FILE id="AIWuFY" name="DisableStupidWarnings.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/DisableStupidWarnings.h"/>
+              <FILE id="m91hqE" name="ForwardDeclarations.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/ForwardDeclarations.h"/>
+              <FILE id="n0Rn7N" name="Macros.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/Macros.h"/>
+              <FILE id="qSoFDD" name="Memory.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/Memory.h"/>
+              <FILE id="nZGSHk" name="Meta.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/Meta.h"/>
+              <FILE id="Uy6GGD" name="MKL_support.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/MKL_support.h"/>
+              <FILE id="jGGU3N" name="NonMPL2.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/NonMPL2.h"/>
+              <FILE id="Aop7KG" name="ReenableStupidWarnings.h" compile="0" resource="0"
+                    file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/ReenableStupidWarnings.h"/>
+              <FILE id="PVhRan" name="StaticAssert.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/StaticAssert.h"/>
+              <FILE id="GSaRfU" name="XprHelper.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/util/XprHelper.h"/>
+            </GROUP>
+            <FILE id="b1GdPi" name="Array.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Array.h"/>
+            <FILE id="v6IJaC" name="ArrayBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/ArrayBase.h"/>
+            <FILE id="KzcRSp" name="ArrayWrapper.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/ArrayWrapper.h"/>
+            <FILE id="n10k3G" name="Assign.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Assign.h"/>
+            <FILE id="cBS3P9" name="Assign_MKL.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Assign_MKL.h"/>
+            <FILE id="YEPUCM" name="AssignEvaluator.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/AssignEvaluator.h"/>
+            <FILE id="y9vu5J" name="BandMatrix.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/BandMatrix.h"/>
+            <FILE id="gp2F5D" name="Block.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Block.h"/>
+            <FILE id="RiJixW" name="BooleanRedux.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/BooleanRedux.h"/>
+            <FILE id="ws6khv" name="CommaInitializer.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/CommaInitializer.h"/>
+            <FILE id="CF4f4Z" name="ConditionEstimator.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/ConditionEstimator.h"/>
+            <FILE id="ZVdAfc" name="CoreEvaluators.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/CoreEvaluators.h"/>
+            <FILE id="wEuEQV" name="CoreIterators.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/CoreIterators.h"/>
+            <FILE id="new3i1" name="CwiseBinaryOp.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/CwiseBinaryOp.h"/>
+            <FILE id="JY7FdA" name="CwiseNullaryOp.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/CwiseNullaryOp.h"/>
+            <FILE id="AvsJSB" name="CwiseTernaryOp.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/CwiseTernaryOp.h"/>
+            <FILE id="NJzTSw" name="CwiseUnaryOp.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/CwiseUnaryOp.h"/>
+            <FILE id="ZyD75p" name="CwiseUnaryView.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/CwiseUnaryView.h"/>
+            <FILE id="dfoPOq" name="DenseBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/DenseBase.h"/>
+            <FILE id="uoQmD9" name="DenseCoeffsBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/DenseCoeffsBase.h"/>
+            <FILE id="AGRXW8" name="DenseStorage.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/DenseStorage.h"/>
+            <FILE id="abJ0T0" name="Diagonal.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Diagonal.h"/>
+            <FILE id="QLruG5" name="DiagonalMatrix.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/DiagonalMatrix.h"/>
+            <FILE id="z7DlQI" name="DiagonalProduct.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/DiagonalProduct.h"/>
+            <FILE id="WZmJaP" name="Dot.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Dot.h"/>
+            <FILE id="nc17VC" name="EigenBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/EigenBase.h"/>
+            <FILE id="IQMPVM" name="ForceAlignedAccess.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/ForceAlignedAccess.h"/>
+            <FILE id="Ynee7l" name="Fuzzy.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Fuzzy.h"/>
+            <FILE id="l9JxuP" name="GeneralProduct.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/GeneralProduct.h"/>
+            <FILE id="ySmo8I" name="GenericPacketMath.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/GenericPacketMath.h"/>
+            <FILE id="fbh4m4" name="GlobalFunctions.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/GlobalFunctions.h"/>
+            <FILE id="P1K9xb" name="Inverse.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Inverse.h"/>
+            <FILE id="uagsHI" name="IO.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/IO.h"/>
+            <FILE id="YG7UMB" name="Map.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Map.h"/>
+            <FILE id="zCTyDP" name="MapBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/MapBase.h"/>
+            <FILE id="glthFa" name="MathFunctions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/MathFunctions.h"/>
+            <FILE id="V3ZgUO" name="MathFunctionsImpl.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/MathFunctionsImpl.h"/>
+            <FILE id="kymwN5" name="Matrix.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Matrix.h"/>
+            <FILE id="B0yNij" name="MatrixBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/MatrixBase.h"/>
+            <FILE id="WuSlpU" name="NestByValue.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/NestByValue.h"/>
+            <FILE id="tI4Sdw" name="NoAlias.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/NoAlias.h"/>
+            <FILE id="yJIISH" name="NumTraits.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/NumTraits.h"/>
+            <FILE id="nBwTta" name="PermutationMatrix.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/PermutationMatrix.h"/>
+            <FILE id="Ny2oep" name="PlainObjectBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/PlainObjectBase.h"/>
+            <FILE id="G5asoV" name="Product.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Product.h"/>
+            <FILE id="uWZxqW" name="ProductEvaluators.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/ProductEvaluators.h"/>
+            <FILE id="bX33p1" name="Random.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Random.h"/>
+            <FILE id="mEcesP" name="Redux.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Redux.h"/>
+            <FILE id="ppbCli" name="Ref.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Ref.h"/>
+            <FILE id="v1oZue" name="Replicate.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Replicate.h"/>
+            <FILE id="SYvobG" name="ReturnByValue.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/ReturnByValue.h"/>
+            <FILE id="EnbjxQ" name="Reverse.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Reverse.h"/>
+            <FILE id="pHqCzb" name="Select.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Select.h"/>
+            <FILE id="wZW8Cg" name="SelfAdjointView.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/SelfAdjointView.h"/>
+            <FILE id="pGgm26" name="SelfCwiseBinaryOp.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/SelfCwiseBinaryOp.h"/>
+            <FILE id="iW3pW3" name="Solve.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Solve.h"/>
+            <FILE id="I7ESfW" name="SolverBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/SolverBase.h"/>
+            <FILE id="rGQ8Lz" name="SolveTriangular.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/SolveTriangular.h"/>
+            <FILE id="mv9uLz" name="StableNorm.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/StableNorm.h"/>
+            <FILE id="UyXqfS" name="Stride.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Stride.h"/>
+            <FILE id="Yde40g" name="Swap.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Swap.h"/>
+            <FILE id="o8bmsw" name="Transpose.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Transpose.h"/>
+            <FILE id="nGe1L0" name="Transpositions.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/Transpositions.h"/>
+            <FILE id="HFnvd6" name="TriangularMatrix.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Core/TriangularMatrix.h"/>
+            <FILE id="yDZEDF" name="VectorBlock.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/VectorBlock.h"/>
+            <FILE id="aHfHWt" name="VectorwiseOp.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/VectorwiseOp.h"/>
+            <FILE id="qlbNfx" name="Visitor.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Core/Visitor.h"/>
+          </GROUP>
+          <GROUP id="{9EE9B08B-5CC8-7193-0410-847E175EEBAC}" name="Eigenvalues">
+            <FILE id="DW2cNG" name="ComplexEigenSolver.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/ComplexEigenSolver.h"/>
+            <FILE id="Px7Uwd" name="ComplexSchur.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/ComplexSchur.h"/>
+            <FILE id="fWDtGU" name="ComplexSchur_LAPACKE.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h"/>
+            <FILE id="hLG9bl" name="EigenSolver.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/EigenSolver.h"/>
+            <FILE id="UpzU2j" name="GeneralizedEigenSolver.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h"/>
+            <FILE id="E1vvIg" name="GeneralizedSelfAdjointEigenSolver.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h"/>
+            <FILE id="yRdo6N" name="HessenbergDecomposition.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/HessenbergDecomposition.h"/>
+            <FILE id="nGiSS7" name="MatrixBaseEigenvalues.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h"/>
+            <FILE id="TKjyX3" name="RealQZ.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/RealQZ.h"/>
+            <FILE id="PZR83C" name="RealSchur.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/RealSchur.h"/>
+            <FILE id="hXcOpr" name="RealSchur_LAPACKE.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h"/>
+            <FILE id="RxkLh9" name="SelfAdjointEigenSolver.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h"/>
+            <FILE id="Js1B5W" name="SelfAdjointEigenSolver_LAPACKE.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h"/>
+            <FILE id="PdiBEE" name="Tridiagonalization.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Eigenvalues/Tridiagonalization.h"/>
+          </GROUP>
+          <GROUP id="{1F44621B-F0CE-6980-C8B9-381B7DCD7E73}" name="Geometry">
+            <GROUP id="{3974A6F8-F19E-B352-39ED-0191EBCE7152}" name="arch">
+              <FILE id="pj64AB" name="Geometry_SSE.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/arch/Geometry_SSE.h"/>
+            </GROUP>
+            <FILE id="IN1kWv" name="AlignedBox.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/AlignedBox.h"/>
+            <FILE id="KuMAqA" name="AngleAxis.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/AngleAxis.h"/>
+            <FILE id="ALOLcT" name="EulerAngles.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/EulerAngles.h"/>
+            <FILE id="WWAEb3" name="Homogeneous.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Homogeneous.h"/>
+            <FILE id="iJz1x4" name="Hyperplane.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Hyperplane.h"/>
+            <FILE id="I42Ndl" name="OrthoMethods.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/OrthoMethods.h"/>
+            <FILE id="VGANVx" name="ParametrizedLine.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/ParametrizedLine.h"/>
+            <FILE id="mZY3EH" name="Quaternion.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Quaternion.h"/>
+            <FILE id="iPR9rO" name="Rotation2D.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Rotation2D.h"/>
+            <FILE id="ImOt02" name="RotationBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/RotationBase.h"/>
+            <FILE id="rIw5ZQ" name="Scaling.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Scaling.h"/>
+            <FILE id="N9NZe2" name="Transform.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Transform.h"/>
+            <FILE id="hyMW4O" name="Translation.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Translation.h"/>
+            <FILE id="KluWic" name="Umeyama.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Geometry/Umeyama.h"/>
+          </GROUP>
+          <GROUP id="{B97F8ED9-7094-BD13-1FA0-0FD50447278A}" name="Householder">
+            <FILE id="yp1BIr" name="BlockHouseholder.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Householder/BlockHouseholder.h"/>
+            <FILE id="d37gv9" name="Householder.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Householder/Householder.h"/>
+            <FILE id="YtOCdJ" name="HouseholderSequence.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/Householder/HouseholderSequence.h"/>
+          </GROUP>
+          <GROUP id="{D67C4FA6-A4C6-214D-10F8-3678281C6E3C}" name="IterativeLinearSolvers">
+            <FILE id="sfNtzu" name="BasicPreconditioners.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h"/>
+            <FILE id="ccQAXi" name="BiCGSTAB.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h"/>
+            <FILE id="rjZRnP" name="ConjugateGradient.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h"/>
+            <FILE id="AF8AAM" name="IncompleteCholesky.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h"/>
+            <FILE id="eWGZ90" name="IncompleteLUT.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h"/>
+            <FILE id="LlbFon" name="IterativeSolverBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h"/>
+            <FILE id="lRi5o6" name="LeastSquareConjugateGradient.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h"/>
+            <FILE id="ieCZot" name="SolveWithGuess.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h"/>
+          </GROUP>
+          <GROUP id="{D30D4DEA-4B2D-0D7D-7D2F-56E7BA37E686}" name="Jacobi">
+            <FILE id="USECzv" name="Jacobi.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/Jacobi/Jacobi.h"/>
+          </GROUP>
+          <GROUP id="{37F3E9DC-83BF-88AF-3CEF-454ECF9F9023}" name="LU">
+            <GROUP id="{101405CC-C41B-ED49-87D3-C844EF9EFC70}" name="arch">
+              <FILE id="SQOxBp" name="Inverse_SSE.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/LU/arch/Inverse_SSE.h"/>
+            </GROUP>
+            <FILE id="aLa99u" name="Determinant.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/LU/Determinant.h"/>
+            <FILE id="BgTTuG" name="FullPivLU.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/LU/FullPivLU.h"/>
+            <FILE id="MdCNYH" name="InverseImpl.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/LU/InverseImpl.h"/>
+            <FILE id="qMlJf0" name="PartialPivLU.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/LU/PartialPivLU.h"/>
+            <FILE id="oWVC4B" name="PartialPivLU_LAPACKE.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/LU/PartialPivLU_LAPACKE.h"/>
+          </GROUP>
+          <GROUP id="{6DD57909-FE09-53AB-D3E5-E67F0C3FC037}" name="MetisSupport">
+            <FILE id="CKEcNm" name="MetisSupport.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/MetisSupport/MetisSupport.h"/>
+          </GROUP>
+          <GROUP id="{5BC217DA-0914-E7F0-F9AB-02933C53C438}" name="misc">
+            <FILE id="ISDCzH" name="blas.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/blas.h"/>
+            <FILE id="mQRrvy" name="Image.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/Image.h"/>
+            <FILE id="ySw686" name="Kernel.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/Kernel.h"/>
+            <FILE id="hfVow3" name="lapack.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/lapack.h"/>
+            <FILE id="GyB5kF" name="lapacke.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/lapacke.h"/>
+            <FILE id="OxKVh6" name="lapacke_mangling.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/misc/lapacke_mangling.h"/>
+            <FILE id="U6Jm1Z" name="RealSvd2x2.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/misc/RealSvd2x2.h"/>
+          </GROUP>
+          <GROUP id="{5A51214D-578E-8DBF-7992-64C79AE33827}" name="OrderingMethods">
+            <FILE id="QrtYDM" name="Amd.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/OrderingMethods/Amd.h"/>
+            <FILE id="U32jeW" name="Eigen_Colamd.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/OrderingMethods/Eigen_Colamd.h"/>
+            <FILE id="u8mjt8" name="Ordering.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/OrderingMethods/Ordering.h"/>
+          </GROUP>
+          <GROUP id="{A5B15128-C9EA-BE70-ED43-B792C96082DC}" name="PardisoSupport">
+            <FILE id="f3NU9V" name="PardisoSupport.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/PardisoSupport/PardisoSupport.h"/>
+          </GROUP>
+          <GROUP id="{AC4F67AE-D7F4-408F-5DAD-AA879E8CA479}" name="PaStiXSupport">
+            <FILE id="JmuzMG" name="PaStiXSupport.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/PaStiXSupport/PaStiXSupport.h"/>
+          </GROUP>
+          <GROUP id="{274C73DB-119D-347F-C888-39CFF7515907}" name="plugins">
+            <FILE id="lBz4Nl" name="ArrayCwiseBinaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/ArrayCwiseBinaryOps.h"/>
+            <FILE id="ByOhdQ" name="ArrayCwiseUnaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/ArrayCwiseUnaryOps.h"/>
+            <FILE id="NTIzb1" name="BlockMethods.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/plugins/BlockMethods.h"/>
+            <FILE id="caQEAk" name="CommonCwiseBinaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/CommonCwiseBinaryOps.h"/>
+            <FILE id="KQie9b" name="CommonCwiseUnaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/CommonCwiseUnaryOps.h"/>
+            <FILE id="UZ2XqC" name="MatrixCwiseBinaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/MatrixCwiseBinaryOps.h"/>
+            <FILE id="lYKXOS" name="MatrixCwiseUnaryOps.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h"/>
+          </GROUP>
+          <GROUP id="{AE7D2A14-5EB7-2B3A-7007-3CDFE161E0D9}" name="QR">
+            <FILE id="nNmyh6" name="ColPivHouseholderQR.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/QR/ColPivHouseholderQR.h"/>
+            <FILE id="IwUwya" name="ColPivHouseholderQR_LAPACKE.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h"/>
+            <FILE id="B7AVXA" name="CompleteOrthogonalDecomposition.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/QR/CompleteOrthogonalDecomposition.h"/>
+            <FILE id="gDmA4i" name="FullPivHouseholderQR.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/QR/FullPivHouseholderQR.h"/>
+            <FILE id="LWod83" name="HouseholderQR.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/QR/HouseholderQR.h"/>
+            <FILE id="YzEYPh" name="HouseholderQR_LAPACKE.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/QR/HouseholderQR_LAPACKE.h"/>
+          </GROUP>
+          <GROUP id="{893623F9-9EA9-6390-E74D-C33E9A833DB3}" name="SparseCholesky">
+            <FILE id="CHAjYf" name="SimplicialCholesky.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCholesky/SimplicialCholesky.h"/>
+            <FILE id="VvJVIo" name="SimplicialCholesky_impl.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h"/>
+          </GROUP>
+          <GROUP id="{7AB0D4C5-A184-DCF2-8EC5-E99BA7CFA15C}" name="SparseCore">
+            <FILE id="TTMxsi" name="AmbiVector.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/AmbiVector.h"/>
+            <FILE id="ukuFkq" name="CompressedStorage.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/CompressedStorage.h"/>
+            <FILE id="SXRiif" name="ConservativeSparseSparseProduct.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h"/>
+            <FILE id="acfRiA" name="MappedSparseMatrix.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/MappedSparseMatrix.h"/>
+            <FILE id="sGfgKG" name="SparseAssign.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseAssign.h"/>
+            <FILE id="bVHox0" name="SparseBlock.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseBlock.h"/>
+            <FILE id="C9Rf9M" name="SparseColEtree.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseColEtree.h"/>
+            <FILE id="GF4cxH" name="SparseCompressedBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseCompressedBase.h"/>
+            <FILE id="B478bi" name="SparseCwiseBinaryOp.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseCwiseBinaryOp.h"/>
+            <FILE id="ZioVAG" name="SparseCwiseUnaryOp.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseCwiseUnaryOp.h"/>
+            <FILE id="vd9QHc" name="SparseDenseProduct.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseDenseProduct.h"/>
+            <FILE id="sPQ8m0" name="SparseDiagonalProduct.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseDiagonalProduct.h"/>
+            <FILE id="quE3b1" name="SparseDot.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseDot.h"/>
+            <FILE id="xQiHoR" name="SparseFuzzy.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseFuzzy.h"/>
+            <FILE id="Yw0PaI" name="SparseMap.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseMap.h"/>
+            <FILE id="whBxwY" name="SparseMatrix.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseMatrix.h"/>
+            <FILE id="KJV83n" name="SparseMatrixBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseMatrixBase.h"/>
+            <FILE id="yiyua8" name="SparsePermutation.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparsePermutation.h"/>
+            <FILE id="i8vVh2" name="SparseProduct.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseProduct.h"/>
+            <FILE id="bE4YMi" name="SparseRedux.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseRedux.h"/>
+            <FILE id="XhbLtu" name="SparseRef.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseRef.h"/>
+            <FILE id="OKzUSS" name="SparseSelfAdjointView.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseSelfAdjointView.h"/>
+            <FILE id="AfZ8zC" name="SparseSolverBase.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseSolverBase.h"/>
+            <FILE id="XEdtxu" name="SparseSparseProductWithPruning.h" compile="0"
+                  resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseSparseProductWithPruning.h"/>
+            <FILE id="R4Yrwg" name="SparseTranspose.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseTranspose.h"/>
+            <FILE id="m0rLAI" name="SparseTriangularView.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseTriangularView.h"/>
+            <FILE id="RdWmRV" name="SparseUtil.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseUtil.h"/>
+            <FILE id="Fs94U9" name="SparseVector.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseVector.h"/>
+            <FILE id="ryDpW3" name="SparseView.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/SparseView.h"/>
+            <FILE id="IuvBWo" name="TriangularSolver.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseCore/TriangularSolver.h"/>
+          </GROUP>
+          <GROUP id="{6732162C-4BAA-5345-E019-29E0A54578F2}" name="SparseLU">
+            <FILE id="AzZ5e3" name="SparseLU.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU.h"/>
+            <FILE id="By2Pkn" name="SparseLU_column_bmod.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_column_bmod.h"/>
+            <FILE id="qD436a" name="SparseLU_column_dfs.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_column_dfs.h"/>
+            <FILE id="iktxQB" name="SparseLU_copy_to_ucol.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h"/>
+            <FILE id="buTjhu" name="SparseLU_gemm_kernel.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_gemm_kernel.h"/>
+            <FILE id="HELvsE" name="SparseLU_heap_relax_snode.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h"/>
+            <FILE id="yMSVQz" name="SparseLU_kernel_bmod.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h"/>
+            <FILE id="nTsaKl" name="SparseLU_Memory.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_Memory.h"/>
+            <FILE id="V1vlmH" name="SparseLU_panel_bmod.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h"/>
+            <FILE id="UKEAyI" name="SparseLU_panel_dfs.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_panel_dfs.h"/>
+            <FILE id="ILsEBg" name="SparseLU_pivotL.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_pivotL.h"/>
+            <FILE id="QdcHW0" name="SparseLU_pruneL.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_pruneL.h"/>
+            <FILE id="HTlazi" name="SparseLU_relax_snode.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_relax_snode.h"/>
+            <FILE id="LOlN6R" name="SparseLU_Structs.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_Structs.h"/>
+            <FILE id="OAu2SN" name="SparseLU_SupernodalMatrix.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h"/>
+            <FILE id="g6euM6" name="SparseLU_Utils.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLU_Utils.h"/>
+            <FILE id="NjKKI8" name="SparseLUImpl.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseLU/SparseLUImpl.h"/>
+          </GROUP>
+          <GROUP id="{674F63DB-880B-CF1C-C48D-2D7EC990D397}" name="SparseQR">
+            <FILE id="IzHWef" name="SparseQR.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SparseQR/SparseQR.h"/>
+          </GROUP>
+          <GROUP id="{8E543120-0E2A-2497-FE20-A02DC07673FC}" name="SPQRSupport">
+            <FILE id="fKk7eI" name="SuiteSparseQRSupport.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SPQRSupport/SuiteSparseQRSupport.h"/>
+          </GROUP>
+          <GROUP id="{6FB5D2E9-D042-6BE6-5969-EB28ADCB4C73}" name="StlSupport">
+            <FILE id="dvY3t0" name="details.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/StlSupport/details.h"/>
+            <FILE id="wAogUl" name="StdDeque.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/StlSupport/StdDeque.h"/>
+            <FILE id="B4MQ5s" name="StdList.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/StlSupport/StdList.h"/>
+            <FILE id="HEcEnd" name="StdVector.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/StlSupport/StdVector.h"/>
+          </GROUP>
+          <GROUP id="{C61ED1DF-B215-38A6-4920-230162489C76}" name="SuperLUSupport">
+            <FILE id="Spjx5V" name="SuperLUSupport.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SuperLUSupport/SuperLUSupport.h"/>
+          </GROUP>
+          <GROUP id="{3246EF23-0954-EC5F-ED71-367300DE7E70}" name="SVD">
+            <FILE id="J7xZ2g" name="BDCSVD.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SVD/BDCSVD.h"/>
+            <FILE id="dlPnhi" name="JacobiSVD.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SVD/JacobiSVD.h"/>
+            <FILE id="VogEgB" name="JacobiSVD_LAPACKE.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SVD/JacobiSVD_LAPACKE.h"/>
+            <FILE id="NRTzF9" name="SVDBase.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/Eigen/src/SVD/SVDBase.h"/>
+            <FILE id="TgJeMS" name="UpperBidiagonalization.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/SVD/UpperBidiagonalization.h"/>
+          </GROUP>
+          <GROUP id="{86BCE4A3-5206-6E3B-C284-87277D4F841B}" name="UmfPackSupport">
+            <FILE id="APgNe4" name="UmfPackSupport.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/Eigen/src/UmfPackSupport/UmfPackSupport.h"/>
+          </GROUP>
+        </GROUP>
+        <FILE id="eGlpHu" name="Cholesky" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Cholesky"/>
+        <FILE id="iSDn1g" name="CholmodSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/CholmodSupport"/>
+        <FILE id="zXJFGm" name="CMakeLists.txt" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/CMakeLists.txt"/>
+        <FILE id="gaqIWa" name="Core" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Core"/>
+        <FILE id="sIYkyK" name="Dense" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Dense"/>
+        <FILE id="yR6wWZ" name="Eigen" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Eigen"/>
+        <FILE id="opnCIb" name="Eigenvalues" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Eigenvalues"/>
+        <FILE id="WUrqXW" name="Geometry" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Geometry"/>
+        <FILE id="SHfP62" name="Householder" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Householder"/>
+        <FILE id="JxhKKk" name="IterativeLinearSolvers" compile="0" resource="1"
+              file="../../Libraries/spleeterpp/include/Eigen/IterativeLinearSolvers"/>
+        <FILE id="y64wly" name="Jacobi" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Jacobi"/>
+        <FILE id="zukaWs" name="LU" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/LU"/>
+        <FILE id="zWbQpD" name="MetisSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/MetisSupport"/>
+        <FILE id="IK8GYi" name="OrderingMethods" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/OrderingMethods"/>
+        <FILE id="svONXO" name="PardisoSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/PardisoSupport"/>
+        <FILE id="XcNA4B" name="PaStiXSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/PaStiXSupport"/>
+        <FILE id="H1TiYP" name="QR" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/QR"/>
+        <FILE id="vA0eLZ" name="QtAlignedMalloc" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/QtAlignedMalloc"/>
+        <FILE id="bqL06L" name="Sparse" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/Sparse"/>
+        <FILE id="LypAxR" name="SparseCholesky" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SparseCholesky"/>
+        <FILE id="eaOP2s" name="SparseCore" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SparseCore"/>
+        <FILE id="v7kO90" name="SparseLU" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SparseLU"/>
+        <FILE id="ZrVAvb" name="SparseQR" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SparseQR"/>
+        <FILE id="pxpzQZ" name="SPQRSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SPQRSupport"/>
+        <FILE id="Z1RqYY" name="StdDeque" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/StdDeque"/>
+        <FILE id="mmZfOn" name="StdList" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/StdList"/>
+        <FILE id="Q2xg7q" name="StdVector" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/StdVector"/>
+        <FILE id="xygtOU" name="SuperLUSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SuperLUSupport"/>
+        <FILE id="Z3EWoz" name="SVD" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/SVD"/>
+        <FILE id="NEIjmO" name="UmfPackSupport" compile="0" resource="1" file="../../Libraries/spleeterpp/include/Eigen/UmfPackSupport"/>
+      </GROUP>
+      <GROUP id="{ACFCCF1F-8004-CF3B-F8B6-0D6E8D544587}" name="gmock">
+        <GROUP id="{99A3B6EE-CDB6-F01A-0B9B-50B761409453}" name="internal">
+          <GROUP id="{94B904BF-AEE5-06AC-23AA-024E907F64E5}" name="custom">
+            <FILE id="XtXNNY" name="gmock-generated-actions.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/gmock/internal/custom/gmock-generated-actions.h"/>
+            <FILE id="b3Opkx" name="gmock-generated-actions.h.pump" compile="0"
+                  resource="1" file="../../Libraries/spleeterpp/include/gmock/internal/custom/gmock-generated-actions.h.pump"/>
+            <FILE id="JncS8X" name="gmock-matchers.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/gmock/internal/custom/gmock-matchers.h"/>
+            <FILE id="N2MkSz" name="gmock-port.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gmock/internal/custom/gmock-port.h"/>
+          </GROUP>
+          <FILE id="ELvfrU" name="gmock-generated-internal-utils.h" compile="0"
+                resource="0" file="../../Libraries/spleeterpp/include/gmock/internal/gmock-generated-internal-utils.h"/>
+          <FILE id="FHEXxe" name="gmock-generated-internal-utils.h.pump" compile="0"
+                resource="1" file="../../Libraries/spleeterpp/include/gmock/internal/gmock-generated-internal-utils.h.pump"/>
+          <FILE id="nBrMEV" name="gmock-internal-utils.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gmock/internal/gmock-internal-utils.h"/>
+          <FILE id="Fy0IJ4" name="gmock-port.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gmock/internal/gmock-port.h"/>
+        </GROUP>
+        <FILE id="vscoOC" name="gmock-actions.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gmock/gmock-actions.h"/>
+        <FILE id="gXSykS" name="gmock-cardinalities.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-cardinalities.h"/>
+        <FILE id="ZAKL5a" name="gmock-generated-actions.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-generated-actions.h"/>
+        <FILE id="Md8FRv" name="gmock-generated-actions.h.pump" compile="0"
+              resource="1" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-actions.h.pump"/>
+        <FILE id="Fze9JM" name="gmock-generated-function-mockers.h" compile="0"
+              resource="0" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-function-mockers.h"/>
+        <FILE id="YeLVqz" name="gmock-generated-function-mockers.h.pump" compile="0"
+              resource="1" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-function-mockers.h.pump"/>
+        <FILE id="oWVF8S" name="gmock-generated-matchers.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-generated-matchers.h"/>
+        <FILE id="bC23pr" name="gmock-generated-matchers.h.pump" compile="0"
+              resource="1" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-matchers.h.pump"/>
+        <FILE id="yakG4a" name="gmock-generated-nice-strict.h" compile="0"
+              resource="0" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-nice-strict.h"/>
+        <FILE id="apRARo" name="gmock-generated-nice-strict.h.pump" compile="0"
+              resource="1" file="../../Libraries/spleeterpp/include/gmock/gmock-generated-nice-strict.h.pump"/>
+        <FILE id="pBjmga" name="gmock-matchers.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-matchers.h"/>
+        <FILE id="Z4hBaU" name="gmock-more-actions.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-more-actions.h"/>
+        <FILE id="DzcyDm" name="gmock-more-matchers.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-more-matchers.h"/>
+        <FILE id="vJcLbN" name="gmock-spec-builders.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gmock/gmock-spec-builders.h"/>
+        <FILE id="gcEPnt" name="gmock.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gmock/gmock.h"/>
+      </GROUP>
+      <GROUP id="{42EC1579-1AC4-A64A-CF0F-202F198083E4}" name="gtest">
+        <GROUP id="{4E3F5F24-44F3-3B6C-7372-3DC09108DE46}" name="internal">
+          <GROUP id="{F7493CBA-3A72-D4F1-715B-88672F6521DD}" name="custom">
+            <FILE id="T7BorS" name="gtest-port.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/internal/custom/gtest-port.h"/>
+            <FILE id="vxMB74" name="gtest-printers.h" compile="0" resource="0"
+                  file="../../Libraries/spleeterpp/include/gtest/internal/custom/gtest-printers.h"/>
+            <FILE id="eqewEf" name="gtest.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/internal/custom/gtest.h"/>
+          </GROUP>
+          <FILE id="AeUiBW" name="gtest-death-test-internal.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-death-test-internal.h"/>
+          <FILE id="Nh1zkP" name="gtest-filepath.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-filepath.h"/>
+          <FILE id="HWisiC" name="gtest-internal.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-internal.h"/>
+          <FILE id="ribtCV" name="gtest-linked_ptr.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-linked_ptr.h"/>
+          <FILE id="tNVRg7" name="gtest-param-util-generated.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-param-util-generated.h"/>
+          <FILE id="F38F4c" name="gtest-param-util-generated.h.pump" compile="0"
+                resource="1" file="../../Libraries/spleeterpp/include/gtest/internal/gtest-param-util-generated.h.pump"/>
+          <FILE id="IOuzlZ" name="gtest-param-util.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-param-util.h"/>
+          <FILE id="wQGRws" name="gtest-port-arch.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-port-arch.h"/>
+          <FILE id="ZFIn9e" name="gtest-port.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/internal/gtest-port.h"/>
+          <FILE id="YunRIj" name="gtest-string.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/internal/gtest-string.h"/>
+          <FILE id="LsvwUb" name="gtest-tuple.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/internal/gtest-tuple.h"/>
+          <FILE id="IIF0wJ" name="gtest-tuple.h.pump" compile="0" resource="1"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-tuple.h.pump"/>
+          <FILE id="r7ZuRn" name="gtest-type-util.h" compile="0" resource="0"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-type-util.h"/>
+          <FILE id="Y32cg9" name="gtest-type-util.h.pump" compile="0" resource="1"
+                file="../../Libraries/spleeterpp/include/gtest/internal/gtest-type-util.h.pump"/>
+        </GROUP>
+        <FILE id="JllmhY" name="gtest-death-test.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-death-test.h"/>
+        <FILE id="kNxq8v" name="gtest-message.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/gtest-message.h"/>
+        <FILE id="HTkFJ7" name="gtest-param-test.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-param-test.h"/>
+        <FILE id="o7UhtH" name="gtest-param-test.h.pump" compile="0" resource="1"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-param-test.h.pump"/>
+        <FILE id="IKwr3t" name="gtest-printers.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-printers.h"/>
+        <FILE id="GKUmsS" name="gtest-spi.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/gtest-spi.h"/>
+        <FILE id="x5UPFj" name="gtest-test-part.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-test-part.h"/>
+        <FILE id="Fje5Qi" name="gtest-typed-test.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest-typed-test.h"/>
+        <FILE id="iAMTbg" name="gtest.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/gtest.h"/>
+        <FILE id="uxSTWJ" name="gtest_pred_impl.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/gtest/gtest_pred_impl.h"/>
+        <FILE id="Yly3Hi" name="gtest_prod.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/gtest/gtest_prod.h"/>
+      </GROUP>
+      <GROUP id="{190C7191-8279-BF3D-A7D9-7960212CD847}" name="rtff">
+        <GROUP id="{29433CA4-C4C2-2240-CA71-6576124D30D6}" name="buffer">
+          <FILE id="iwtqNe" name="audio_buffer.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/rtff/buffer/audio_buffer.h"/>
+        </GROUP>
+        <GROUP id="{C1DA9755-8E5E-7B5D-1B8C-1EBFAB8B34D0}" name="fft">
+          <FILE id="gZvGrV" name="window_type.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/rtff/fft/window_type.h"/>
+        </GROUP>
+        <FILE id="jPXU8o" name="abstract_filter.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/rtff/abstract_filter.h"/>
+        <FILE id="iqHhuj" name="filter.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/rtff/filter.h"/>
+      </GROUP>
+      <GROUP id="{1A3F71CD-268F-D04D-6C22-005F0691260E}" name="spleeter">
+        <FILE id="wRGRin" name="spleeter.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/spleeter/spleeter.h"/>
+      </GROUP>
+      <GROUP id="{32CAE852-33CA-61E8-5554-41783EED1154}" name="spleeter_common">
+        <FILE id="rv69jc" name="spleeter_common.h" compile="0" resource="0"
+              file="../../Libraries/spleeterpp/include/spleeter_common/spleeter_common.h"/>
+        <FILE id="ZX1L0v" name="type.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/spleeter_common/type.h"/>
+      </GROUP>
+      <GROUP id="{CB660FE1-5615-6624-346D-B2B0F0DB8C2B}" name="spleeter_filter">
+        <FILE id="rZYT7D" name="filter.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/spleeter_filter/filter.h"/>
+      </GROUP>
+      <GROUP id="{5FB8E0DD-B2D6-1DFF-2FEA-4C651924BCD4}" name="wave">
+        <FILE id="lT4ulA" name="error.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/wave/error.h"/>
+        <FILE id="mIFzfz" name="file.h" compile="0" resource="0" file="../../Libraries/spleeterpp/include/wave/file.h"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{A9A3366A-1527-635E-CB6C-EE0109687987}" name="Source">
+      <GROUP id="{1F5701BA-B794-8487-2013-1CE94AACFA11}" name="GUI elements">
+        <FILE id="NxAOv0" name="ParameterSlider.cpp" compile="1" resource="0"
+              file="Source/ParameterSlider.cpp"/>
+        <FILE id="WefbfN" name="ParameterSlider.h" compile="0" resource="0"
+              file="Source/ParameterSlider.h"/>
+        <FILE id="yWaYc3" name="colourPalette.h" compile="0" resource="0" file="Source/colourPalette.h"/>
+        <FILE id="QXO6Pb" name="colourPalette.cpp" compile="1" resource="0"
+              file="Source/colourPalette.cpp"/>
+      </GROUP>
+      <GROUP id="{DE148B87-1FB6-93E4-BAFB-9EA5A2C682DA}" name="Granulation">
+        <FILE id="XuFnvI" name="Grain.cpp" compile="1" resource="0" file="Source/Grain.cpp"/>
+        <FILE id="uU5fNd" name="Grain.h" compile="0" resource="0" file="Source/Grain.h"/>
+      </GROUP>
+      <GROUP id="{DDF75E58-F5FD-DAD7-C8D2-05F36B2333B4}" name="Splitting">
+        <FILE id="qX6Vzx" name="SplitWindow.h" compile="0" resource="0" file="Source/SplitWindow.h"/>
+        <FILE id="cJe2ti" name="SplitWindow.cpp" compile="1" resource="0" file="Source/SplitWindow.cpp"/>
+        <FILE id="CvMKBm" name="Spleeted.h" compile="0" resource="0" file="Source/Spleeted.h"/>
+        <FILE id="dGkwtF" name="Spleeted.cpp" compile="1" resource="0" file="Source/Spleeted.cpp"/>
+        <FILE id="CflpNO" name="SpleeterThread.h" compile="0" resource="0"
+              file="Source/SpleeterThread.h"/>
+        <FILE id="zevphY" name="SpleeterThread.cpp" compile="1" resource="0"
+              file="Source/SpleeterThread.cpp"/>
+      </GROUP>
+      <FILE id="V6zl79" name="ReferenceCountedBuffer.cpp" compile="1" resource="0"
+            file="Source/ReferenceCountedBuffer.cpp"/>
+      <FILE id="fxeCTN" name="ReferenceCountedBuffer.h" compile="0" resource="0"
+            file="Source/ReferenceCountedBuffer.h"/>
+      <FILE id="fgiCFr" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="ak5lLI" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="oIhp80" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="ZmmO2w" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022" externalLibraries="artff.lib;&#10;gmock.lib;&#10;gmock_main.lib;&#10;gtest.lib;&#10;mkl_core.lib;&#10;mkl_intel_lp64.lib;&#10;mkl_sequential.lib;&#10;rtff.lib&#10;spleeter.lib;&#10;spleeter_common.lib;&#10;spleeter_filter.lib;&#10;tensorflow.lib;&#10;wave.lib;">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="SplitGrains" enablePluginBinaryCopyStep="1"
+                       vst3BinaryLocation="C:\Program Files\Common Files\VST3"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="SplitGrains" headerPath="C:\Users\User\Documents\Dev\Libraries\spleeterpp\include;&#10;&#10;"
+                       libraryPath="C:\Users\User\Documents\Dev\Libraries\spleeterpp\lib;&#10;"
+                       enablePluginBinaryCopyStep="1" vst3BinaryLocation="C:\Program Files\Common Files\VST3"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
