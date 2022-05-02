@@ -14,7 +14,7 @@
 
 //==============================================================================
 
-SplitWindow::SplitWindow(SplitGrainsAudioProcessor& p) : audioProcessor(p), spleeted (p), 
+SplitWindow::SplitWindow(SplitGrainsAudioProcessor& p) : audioProcessor(p), 
 DocumentWindow("SplitGrains Split", colourPalette.getSpaceCadet(), DocumentWindow::closeButton | DocumentWindow::minimiseButton, true)
 
 {
@@ -88,6 +88,8 @@ DocumentWindow("SplitGrains Split", colourPalette.getSpaceCadet(), DocumentWindo
         fiveSepB.setColour(juce::TextButton::ColourIds::textColourOnId, colourPalette.getSpaceCadet());
     };
 
+    addAndMakeVisible(modelDir);
+    addAndMakeVisible(outputDir);
     addAndMakeVisible(noSepB);
     addAndMakeVisible(twoSepB);
     addAndMakeVisible(fourSepB);
@@ -105,11 +107,13 @@ SplitWindow::~SplitWindow()
 void SplitWindow::paint(juce::Graphics& g)
 {
     g.fillAll(colourPalette.getSpaceCadet());
-    g.setGradientFill(juce::ColourGradient(colourPalette.getSilverMetal(), 0.f, 0.f, colourPalette.getSpaceCadet(), static_cast<float>(getWidth()), static_cast<float>(getHeight() * 0.6), false));
+    g.setGradientFill(juce::ColourGradient(colourPalette.getSilverMetal(), 0.f, 0.f, colourPalette.getSpaceCadet()
+        , static_cast<float>(getWidth()), static_cast<float>(getHeight() * 0.6), false));
     g.fillRect(0.f, 0.f, static_cast<float>(getWidth()), static_cast<float>(getHeight()));
     g.drawRect(0.f, 0.f, static_cast<float>(getWidth()), static_cast<float>(getHeight()));
     g.setColour(colourPalette.getLavender());
-    g.drawMultiLineText("Select Seperation type. Then drop Files to Split into stems. Once process is done this window will close and main synth ui will open", getWidth() * 0.25, getHeight() * 0.25, 250, juce::Justification::centred, true);
+    g.drawMultiLineText("Select Seperation type. Then drop Files to Split into stems. Once process is done this window will close and main synth ui will open"
+        , getWidth() * 0.25, getHeight() * 0.25, 250, juce::Justification::centred, true);
     
 }
 
@@ -126,33 +130,23 @@ bool SplitWindow::isInterestedInFileDrag(const juce::StringArray& files)
 
 void SplitWindow::filesDropped(const juce::StringArray& files, int x, int y)
 {
-    juce::String output = "C:\\Users\\User\\Documents\\Dev\\";
+    juce::String output = outputDir.getText();
+    juce::String model = modelDir.getText();
     for (auto file : files) {
         if (isInterestedInFileDrag(files)) {
             auto myFile = std::make_unique<juce::File>(file);
-            juce::String str = output + myFile->getFileNameWithoutExtension();
             switch (splitType) {
             case 0:
-                //fileName = myFile->getFileNameWithoutExtension();
-                audioProcessor.loadFile(file);
+                audioProcessor.loadFile(file, false);
                 break;
             case 1:              
-                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::TwoStems, output);
-                //spleeted.spleeted((myFile->getFullPathName().toStdString()), spleeter::TwoStems, output);
-                //fileName = myFile->getFileNameWithoutExtension() + " accompaniment";
-                //audioProcessor.loadFile(str);
+                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::TwoStems, output, model);
                 break;
             case 2:
-                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::FourStems, output);
-                //spleeted.spleeted((myFile->getFullPathName().toStdString()), spleeter::FourStems, output);
-                //fileName = myFile->getFileNameWithoutExtension() + " other";
-                //audioProcessor.loadFile(str);
+                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::FourStems, output, model);
                 break;
             case 3:
-                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::FiveStems, output);
-                //spleeted.spleeted((myFile->getFullPathName().toStdString()), spleeter::FiveStems, output);
-                //fileName = myFile->getFileNameWithoutExtension() + " piano";
-                //audioProcessor.loadFile(str);
+                new SpleeterThread(audioProcessor, myFile->getFullPathName().toStdString(), spleeter::FiveStems, output, model);
                 break;
             }
             if(buttonSelected) closeButtonPressed();
@@ -163,6 +157,9 @@ void SplitWindow::resized()
 {
     // This method is where you should set the bounds of any child
     // components that your component contains..
+    modelDir.setBounds(getWidth() * 0.05, getHeight() * 0.40, getWidth()*0.85, getHeight() * 0.10);
+    outputDir.setBounds(getWidth() * 0.05, getHeight() * 0.50, getWidth() * 0.85, getHeight() * 0.10);
+    
     noSepB.setBounds(getWidth() * 0.05, getHeight() * 0.70, 80, 50);
     twoSepB.setBounds(getWidth() * 0.30, getHeight() * 0.70, 80, 50);
     fourSepB.setBounds(getWidth() * 0.55, getHeight() * 0.70, 80, 50);

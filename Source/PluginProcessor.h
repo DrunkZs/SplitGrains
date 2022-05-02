@@ -9,13 +9,12 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Grain.h";
-#include "ReferenceCountedBuffer.h";
-
+#include "PuroEngine.h"
+#include "puro.hpp"
 //==============================================================================
 /**
 */
-class SplitGrainsAudioProcessor  : public juce::AudioProcessor, public juce::Thread {
+class SplitGrainsAudioProcessor : public juce::AudioProcessor{
 public:
     //==============================================================================
     SplitGrainsAudioProcessor();
@@ -30,18 +29,13 @@ public:
    #endif
 
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-
     void processMidi(juce::MidiBuffer& midiMessages, int numSamples);
-
-    float clip(float n, float lower, float upper);
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
-
     //==============================================================================
     const juce::String getName() const override;
-
     bool acceptsMidi() const override;
     bool producesMidi() const override;
     bool isMidiEffect() const override;
@@ -58,48 +52,44 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    //void deleteExtraFiles(const juce::String& path, spleeter::SeparationType type);
+    puro::AlignedPool<Grain> getGrainPool();
 
-    void checkForBuffersToFree();
+    void setSplit(const juce::StringArray &stems);
+    void loadFile(const juce::String& path, BOOLEAN);
+    juce::StringArray stems;
+    int splitType = 0;
 
-    void run() override;
-    void checkBuffersToFree();
-    void loadFile(const juce::String& path);
-    int wrap(int val, const int low, const int high);
+    PuroEngine grainEngine;
 
-    //Main Grain Parameters
-    juce::AudioParameterFloat* positionParam;
-    juce::AudioParameterFloat* randPosParam;
-    juce::AudioParameterFloat* directionParam;
-    juce::AudioParameterFloat* densityParam;
-    juce::AudioParameterFloat* randDensityParam;
-    juce::AudioParameterFloat* durationParam;
-    juce::AudioParameterFloat* randDurParam;
-    juce::AudioParameterFloat* transParam;
-    juce::AudioParameterFloat* randTransParam;
-    juce::AudioParameterFloat* volumeParam;
-    juce::AudioParameterFloat* randVolumeParam;
-    juce::AudioParameterBool* holdParam;
-
-    //Envelope parameters
-    juce::AudioParameterFloat* envMidParam;
-    juce::AudioParameterFloat* envSustainParam;
-    juce::AudioParameterFloat* envCurveParam;
 private:
     //==============================================================================
     juce::AudioFormatManager formatManager;
-    //juce::AudioBuffer<float> waveform;
-    //juce::Synthesiser mSampler;
-
-    juce::ReferenceCountedArray<ReferenceCountedBuffer> buffers;
-    ReferenceCountedBuffer::Ptr fileBuffer;
-    long long int time;
-    long long int nextGrainOnset;
-    double sampleRate;
-    int midiNotes[128] = { 0 };
-
-    juce::Array<Grain> grainStack;
+    juce::AudioSampleBuffer& getNewBuffer();
+    juce::AudioSampleBuffer newBuffer;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SplitGrainsAudioProcessor)
 };
+//long long int time;
+//long long int nextGrainOnset;
+    //juce::dsp::ProcessorDuplicator <juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients <float>> lowPassFilter;
+    //juce::dsp::IIR::Coefficients<float>::Ptr coefficients;
+    //juce::ReferenceCountedArray<ReferenceCountedBuffer> buffers;
+    //ReferenceCountedBuffer::Ptr fileBuffer;
+    //juce::Array<Grain> grainStack;
+    //float getMaximumPosition();
+    //float getMaximumSampleCount();
+    //void run() override;
+    //void checkBuffersToFree();
+    //int wrap(int val, const int low, const int high); //#include "Grain.h"
+ //#include "ReferenceCountedBuffer.h";
+//    
+    //void deleteExtraFiles(const juce::String& path, spleeter::SeparationType type);
+//    std::vector<double> magnitudes;
+//std::vector<double> frequencies;
+
+//float lastSampleRate;
+//bool shouldUpdateFilter;
+//int activeMidiNotes[128] = { 0 };
+    //void checkForBuffersToFree();
+//    float clip(float n, float lower, float upper);

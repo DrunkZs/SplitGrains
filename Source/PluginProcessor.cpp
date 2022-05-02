@@ -19,31 +19,16 @@ SplitGrainsAudioProcessor::SplitGrainsAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       ), Thread("Grain scheduling thread") ,  positionParam(nullptr)
+                       )
 #endif
 {
     formatManager.registerBasicFormats();
-    addParameter(positionParam = new juce::AudioParameterFloat("pos", "Position", juce::NormalisableRange<float>(0.0f, 1.0f, 0.01f, 0.25f), 0.5f));
-    addParameter(randPosParam = new juce::AudioParameterFloat("randPos", "Random Position", juce::NormalisableRange<float>(0.0, 1.0, 0.01, 0.5), 0.0f));
-    addParameter(densityParam = new juce::AudioParameterFloat("den", "Density", juce::NormalisableRange<float>(0.001, 80.0, 0.001, 0.2), 10.0f));
-    addParameter(randDensityParam = new juce::AudioParameterFloat("randDen", "Random Density", 0.0f, 1.0f, 0.0f));
-    addParameter(durationParam = new juce::AudioParameterFloat("dur", "Duration", juce::NormalisableRange<float>(0.001, 4, 0.001, 0.3), 0.3f));
-    addParameter(randDurParam = new juce::AudioParameterFloat("randDur", "Random Duration", 0.0f, 1.0f, 0.0f));
-    addParameter(transParam = new juce::AudioParameterFloat("trans", "Transposition", -48.0f, 48.0f, 0.0f));
-    addParameter(randTransParam = new juce::AudioParameterFloat("randTrans", "Random Trans", juce::NormalisableRange<float>(0, 24.0, 0.001, 0.5), 0.0f));
-    addParameter(volumeParam = new juce::AudioParameterFloat("vol", "Volume", juce::NormalisableRange<float>(0.001, 1.0, 0.001, 0.7), 0.7f));
-    addParameter(randVolumeParam = new juce::AudioParameterFloat("randVol", "Random Volume", 0.0f, 1.0f, 0.0f));
-    addParameter(envMidParam = new juce::AudioParameterFloat("envCenter", "Envelope Center", 0.0f, 1.0f, 0.5f));
-    addParameter(envSustainParam = new juce::AudioParameterFloat("envSustain", "Envelope Sustain", 0.0f, 1.0f, 0.5f));
-    addParameter(envCurveParam = new juce::AudioParameterFloat("envCurve", "Envelope Curve", juce::NormalisableRange<float>(-12, 12, 0.01, 1), 0.0f));
-    time = 0;
 
-    startThread();
 }
 
 SplitGrainsAudioProcessor::~SplitGrainsAudioProcessor()
 {
-    stopThread(4000);
+
 }
 
 //==============================================================================
@@ -111,7 +96,8 @@ void SplitGrainsAudioProcessor::changeProgramName (int index, const juce::String
 //==============================================================================
 void SplitGrainsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    sampleRate = samplesPerBlock;
+    juce::ignoreUnused(samplesPerBlock);
+    juce::ignoreUnused(sampleRate);
 }
 
 void SplitGrainsAudioProcessor::releaseResources()
@@ -146,15 +132,19 @@ bool SplitGrainsAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 }
 #endif
 
+
 void SplitGrainsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {    
-    const int numSamplesInBlock = buffer.getNumSamples();
+    for (int i = 0; i < buffer.getNumChannels(); ++i)
+        buffer.clear(i, 0, buffer.getNumSamples());
 
-    for (int i = getTotalNumInputChannels(); i < getTotalNumOutputChannels(); ++i) {
-        buffer.clear(i, 0, numSamplesInBlock);
-    }
+    juce::ScopedNoDenormals noDenormals;
 
-    //processMidi(midiMessages, numSamplesInBlock);
+    grainEngine.processBlock(buffer);
+
+/*    
+
+    processMidi(midiMessages, numSamplesInBlock);
 
     ReferenceCountedBuffer::Ptr retainedBuffer(fileBuffer);
 
@@ -195,10 +185,12 @@ void SplitGrainsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
         }
         ++time;
     }
+    */
 }
 
 void SplitGrainsAudioProcessor::processMidi(juce::MidiBuffer& midiMessages, int numSamples)
 {
+    /*
     juce::MidiBuffer::Iterator i(midiMessages);
     juce::MidiMessage message;
     int time;
@@ -217,11 +209,9 @@ void SplitGrainsAudioProcessor::processMidi(juce::MidiBuffer& midiMessages, int 
                 midiNotes[i] = 0;
         }
     }
+    */
 }
 
-float SplitGrainsAudioProcessor::clip(float n, float lower, float upper) {
-    return std::max(lower, std::min(n, upper));
-}
 //==============================================================================
 bool SplitGrainsAudioProcessor::hasEditor() const
 {
@@ -263,14 +253,78 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 //    }
 //}
 
-void SplitGrainsAudioProcessor::checkForBuffersToFree()
-{
 
+void SplitGrainsAudioProcessor::setSplit(const juce::StringArray& splitStems)
+{
+    stems.mergeArray(splitStems);
 }
 
+void SplitGrainsAudioProcessor::loadFile(const juce::String& path, BOOLEAN clear) {
+    juce::Logger::writeToLog("Loading File");
+    
+    auto file = juce::File(path);
+    if (file == juce::File{}) return;
+    try {
+
+        std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(file));
+        if (reader != 0)
+        {
+            newBuffer = juce::AudioSampleBuffer(reader->numChannels, (int)reader->lengthInSamples);
+            reader->read(&newBuffer, 0, (int)reader->lengthInSamples, 0, true, true);
+        }
+
+        grainEngine.sourceBuffer = puro::dynamic_buffer<MAX_NUM_SRC_CHANNELS, float>(newBuffer.getNumChannels()
+            , newBuffer.getNumSamples()
+            , newBuffer.getArrayOfWritePointers());
+        grainEngine.readposParam.maximum = newBuffer.getNumSamples();
+    }
+    catch (const std::exception& e){
+        juce::Logger::writeToLog(e.what());
+    }
+}
+
+juce::AudioSampleBuffer& SplitGrainsAudioProcessor::getNewBuffer() {
+    return newBuffer;
+}
+
+
+
+
+puro::AlignedPool<Grain> SplitGrainsAudioProcessor::getGrainPool()
+{
+    return puro::AlignedPool<Grain>();
+}
+
+
+
+
+
+
+
+//unused functions
+/*
+* 
+* 
+* float SplitGrainsAudioProcessor::getMaximumPosition()
+{
+    return 0.0f;
+}
+
+float SplitGrainsAudioProcessor::getMaximumSampleCount()
+{
+    return 0.0f;
+}
+* int SplitGrainsAudioProcessor::wrap(int val, const int low, const int high)
+{
+    int range_size = high - low + 1;
+    if (val < low) {
+        val += range_size * ((low - val) / range_size + 1);
+    }
+    return low + (val - low) % range_size;
+}
 void SplitGrainsAudioProcessor::run()
 {
-    //checkForBuffersToFree();
+    checkForBuffersToFree();
     while (!threadShouldExit()) {
         int dur = 1000;
 
@@ -286,29 +340,29 @@ void SplitGrainsAudioProcessor::run()
             }
         }
 
-        //// handle MIDI
-        //juce::Array<juce::Array<int>> activeNotes;
+        // handle MIDI
+        juce::Array<juce::Array<int>> activeNotes;
 
-        //for (int i = 0; i < 128; i++) {
-        //    if (midiNotes[i] > 0) {
-        //        activeNotes.add(juce::Array<int> {i, midiNotes[i] });
-        //    }
-        //}
+        for (int i = 0; i < 128; i++) {
+            if (midiNotes[i] > 0) {
+                activeNotes.add(juce::Array<int> {i, midiNotes[i] });
+            }
+        }
 
         // add grains
         if (fileBuffer != nullptr) {
-            //if (activeNotes.size() > 0) {
+            if (activeNotes.size() > 0) {
                 // initialize nextGrainOnset to lie in the future
                 if (nextGrainOnset == 0) nextGrainOnset = time;
 
                 int numSamples = fileBuffer->getAudioSampleBuffer()->getNumSamples();
 
-                // Transposition
-                //float midiNote = 60;
-                //midiNote = activeNotes[juce::Random::getSystemRandom().nextInt(activeNotes.size())][0];
-                //midiNote = (midiNote - 61);
+                //Transposition
+                float midiNote = 60;
+                midiNote = activeNotes[juce::Random::getSystemRandom().nextInt(activeNotes.size())][0];
+                midiNote = (midiNote - 61);
 
-                float trans = *transParam; //+ midiNote;
+                float trans = *transParam + midiNote;
                 trans += 1 + (*randTransParam * (juce::Random::getSystemRandom().nextFloat() * 2 - 1));
 
                 float ratio = pow(2.0, trans / 12.0);
@@ -345,45 +399,21 @@ void SplitGrainsAudioProcessor::run()
 
                 double schedError = ((onset - schedDelay) - time) / sampleRate;
                 dur += schedError;
-           // }
+                wait(dur * 1000);
+            }
+            else {
+                // there are no held notes so we should reset the value for nextGrainOnset
+                nextGrainOnset = 0;
+                wait(100);
+            }
         }
+        else {
+            wait(100);
+        }
+
     }
+} 
+float SplitGrainsAudioProcessor::clip(float n, float lower, float upper) {
+    return std::max(lower, std::min(n, upper));
 }
-
-void SplitGrainsAudioProcessor::checkBuffersToFree()
-{
-    for (auto i = buffers.size(); --i;) {
-        ReferenceCountedBuffer::Ptr buffer(buffers.getUnchecked(i));
-
-        if (buffer->getReferenceCount() == 2) buffers.remove(i);
-    }
-}
-
-void SplitGrainsAudioProcessor::loadFile(const juce::String& path) {
-
-    juce::Logger::writeToLog("Loading File");
-    auto file = juce::File(path);
-    if (file == juce::File{}) return;
-
-    std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(file));
-    if (reader != nullptr) {
-        ReferenceCountedBuffer::Ptr newBuffer = new ReferenceCountedBuffer(file.getFileName(), (int)reader->numChannels, (int)reader->lengthInSamples);
-
-        reader->read(newBuffer->getAudioSampleBuffer(), 0, static_cast<int>(reader->lengthInSamples), 0, true, true);
-        fileBuffer = newBuffer;
-        juce::Logger::writeToLog("Loaded file");
-        //juce::Logger::writeToLog("Samples in Buffer : " + newBuffer->getAudioSampleBuffer()->getNumSamples());
-    }
-    else {
-        juce::Logger::writeToLog("File is non existen");
-    }
-   }
-
-int SplitGrainsAudioProcessor::wrap(int val, const int low, const int high)
-{
-    int range_size = high - low + 1;
-    if (val < low) {
-        val += range_size * ((low - val) / range_size + 1);
-    }
-    return low + (val - low) % range_size;
-}
+*/

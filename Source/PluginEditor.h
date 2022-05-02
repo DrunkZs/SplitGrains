@@ -18,22 +18,59 @@
 //==============================================================================
 /**
 */
-class SplitGrainsAudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                         public juce::Slider::Listener
+class SplitGrainsAudioProcessorEditor : public juce::AudioProcessorEditor,
+    public juce::Slider::Listener,
+    public juce::Timer
 {
 public:
     SplitGrainsAudioProcessorEditor (SplitGrainsAudioProcessor&);
     ~SplitGrainsAudioProcessorEditor() override;
 
+    void timerCallback() override;
+
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-    //void run() override;
-    //void checkForPathToOpen();
-    //void checkForBuffersToFree();
     void showSplitWindow();
 
     void sliderValueChanged(juce::Slider* slider) override;
+
+    void stemChanged();
+
+    enum stemSelect {
+        source,
+        vocal,
+        accompaniment,
+        drums,
+        bass,
+        piano,
+        other
+    };
+    juce::Slider intervalSlider;
+    juce::Slider durationSlider;
+    juce::Slider panningSlider;
+    juce::Slider readposSlider;
+    juce::Slider velocitySlider;
+    juce::Slider directionSlider;
+
+    juce::Slider intervalRandSlider;
+    juce::Slider durationRandSlider;
+    juce::Slider panningRandSlider;
+    juce::Slider readposRandSlider;
+    juce::Slider velocityRandSlider;
+    juce::Slider directionRandSlider;
+
+    juce::Label intervalLabel;
+    juce::Label durationLabel;
+    juce::Label panningLabel;
+    juce::Label readposLabel;
+    juce::Label velocityLabel;
+    juce::Label randomLabel;
+    juce::Label directionLabel;
+
+    juce::Label activeGrainsLabel;
+
+    juce::ComboBox stemSelect;
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -41,40 +78,6 @@ private:
     SplitGrainsAudioProcessor& audioProcessor;
     SplitWindow splitWindow;
     ColourPalette colourPalette;
-
-    juce::ScopedPointer<ParameterSlider> positionSlider;
-    juce::ScopedPointer<ParameterSlider> randPosSlider;
-    juce::Label randPosLabel;
-    //  Duration
-    juce::Label durationLabel;
-    juce::ScopedPointer<ParameterSlider> durationSlider;
-    juce::ScopedPointer<ParameterSlider> randDurSlider;
-
-    // Density:
-    juce::Label densityLabel;
-    juce::ScopedPointer<ParameterSlider> densitySlider;
-    juce::ScopedPointer<ParameterSlider> randDenSlider;
-
-    // Transposition:
-    juce::Label transLabel;
-    juce::ScopedPointer<ParameterSlider> transSlider;
-    juce::ScopedPointer<ParameterSlider> randTransSlider;
-
-    // Volume:
-    juce::Label volLabel;
-    juce::ScopedPointer<ParameterSlider> volSlider;
-    juce::ScopedPointer<ParameterSlider> randVolSlider;
-
-    // Envelope:
-    juce::Label envLabel;
-    juce::Label envMidLabel;
-    juce::ScopedPointer<ParameterSlider> envMidSlider;
-
-    juce::Label envSusLabel;
-    juce::ScopedPointer<ParameterSlider> envSusSlider;
-
-    juce::Label envCurveLabel;
-    juce::ScopedPointer<ParameterSlider> envCurveSlider;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SplitGrainsAudioProcessorEditor)
 };

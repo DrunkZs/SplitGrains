@@ -13,7 +13,7 @@
 class SpleeterThread : public Spleeted, public juce::Thread 
 {
 public:
-    SpleeterThread(SplitGrainsAudioProcessor& p, const std::string& f, spleeter::SeparationType t, juce::String& o);
+    SpleeterThread(SplitGrainsAudioProcessor& p, const std::string& f, spleeter::SeparationType t, juce::String& o, juce::String& m);
     ~SpleeterThread();
 
     void run() override;
@@ -21,6 +21,7 @@ public:
 private:
     std::string file;
     juce::String output_dir;
+    juce::String model_dir;
     spleeter::SeparationType type;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SpleeterThread);

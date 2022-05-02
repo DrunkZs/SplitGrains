@@ -75,24 +75,21 @@ spleeter::Waveform Spleeted::read(const juce::String& file, double* sample_rate,
     return forceStereo(data);
 }
 
-void Spleeted::spleeted(const std::string& file, spleeter::SeparationType type , juce::String &output_dir)
+void Spleeted::spleeted(const std::string& file, spleeter::SeparationType type , juce::String &output_dir, juce::String& model_dir)
 {
     const juce::ScopedLock lock(splitting);
     auto juceFile = juce::File(file);
-
-    spleeter::Waveform drums;
-    spleeter::Waveform bass;
-    spleeter::Waveform piano;
-    spleeter::Waveform other;
     
     auto source = read(file, &sample_rate, err);
     if (err) {
         juce::Logger::writeToLog("Error reading file");
     }
 
-    spleeter::Initialize("C:\\Users\\User\\Documents\\Dev\\Libraries\\spleeterpp\\models\\default", { type }, err);
+
+    juce::Logger::writeToLog(model_dir);
+    spleeter::Initialize(model_dir.toStdString(), {type}, err);
     if (err) {
-        juce::Logger::writeToLog("Error init model;s");
+        juce::Logger::writeToLog("Error init model");
     }
 
     switch (type) {
@@ -122,7 +119,15 @@ void Spleeted::splitTwo(spleeter::Waveform& source, std::error_code& err, juce::
     Write(output_dir + file.getFileNameWithoutExtension() + " vocals.wav", vocals);
     Write(output_dir + file.getFileNameWithoutExtension() + " accompaniment.wav", accompaniment);
     juce::Logger::writeToLog("Split SuccessFul");
-    audioProcessor.loadFile(output_dir + file.getFileNameWithoutExtension() + " vocals.wav");
+    juce::StringArray stems;
+    stems.add(file.getFullPathName());
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " vocals.wav");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " accompaniment.wav");
+    stems.add(" ");
+    stems.add(" ");
+    stems.add(" ");
+
+    audioProcessor.setSplit(stems);
 }
 void Spleeted::splitFour(spleeter::Waveform& source, std::error_code& err, juce::String& output_dir, juce::File& file) {
     spleeter::Waveform vocals;
@@ -139,7 +144,15 @@ void Spleeted::splitFour(spleeter::Waveform& source, std::error_code& err, juce:
     Write(output_dir + file.getFileNameWithoutExtension() + " bass.wav", bass);
     Write(output_dir + file.getFileNameWithoutExtension() + " other.wav", other);
     juce::Logger::writeToLog("Split SuccessFul");
-    audioProcessor.loadFile(output_dir + file.getFileNameWithoutExtension() + " other.wav");
+    juce::StringArray stems;
+    stems.add(file.getFullPathName());
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " vocals.wav");
+    stems.add(" ");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " drums.wav");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " bass.wav");
+    stems.add(" ");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " other.wav");
+    audioProcessor.setSplit(stems);
 }
 void Spleeted::splitFive(spleeter::Waveform& source, std::error_code& err, juce::String& output_dir, juce::File& file) {
     spleeter::Waveform vocals;
@@ -158,8 +171,15 @@ void Spleeted::splitFive(spleeter::Waveform& source, std::error_code& err, juce:
     Write(output_dir + file.getFileNameWithoutExtension() + " piano.wav", piano);
     Write(output_dir + file.getFileNameWithoutExtension() + " other.wav", other);
     juce::Logger::writeToLog("Split SuccessFul");
-    audioProcessor.loadFile(output_dir + file.getFileNameWithoutExtension() + " bass.wav");
-
+    juce::StringArray stems;
+    stems.add(file.getFullPathName());
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " vocals.wav");
+    stems.add(" ");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " drums.wav");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " bass.wav");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " piano.wav");
+    stems.add(output_dir + file.getFileNameWithoutExtension() + " other.wav");
+    audioProcessor.setSplit(stems);
 }
 
 void Spleeted::Write(const juce::String& output_path, const spleeter::Waveform& data) {

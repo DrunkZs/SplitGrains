@@ -22,7 +22,7 @@ public:
 
     spleeter::Waveform forceStereo(const Eigen::MatrixXf& data);
     spleeter::Waveform read(const juce::String& file, double* sample_rate, std::error_code& err);
-    void spleeted(const std::string& file, spleeter::SeparationType type, juce::String& output_dir);
+    void spleeted(const std::string& file, spleeter::SeparationType type, juce::String& output_dir, juce::String& model_dir);
     void splitTwo(spleeter::Waveform& source, std::error_code& err, juce::String& output_dir, juce::File& file);
     void splitFour(spleeter::Waveform& source, std::error_code& err, juce::String& output_dir, juce::File& file);
     void splitFive(spleeter::Waveform& source, std::error_code& err, juce::String& output_dir, juce::File& file);
@@ -30,7 +30,6 @@ public:
 
 private:
     double sample_rate;
-    const juce::String models_path = "C:\\Users\\User\\Documents\\Dev\\Libraries\\spleeterpp\\models";
     std::error_code err;
     SplitGrainsAudioProcessor& audioProcessor;
 

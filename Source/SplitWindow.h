@@ -12,15 +12,14 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "spleeted.h"
 #include "colourPalette.h"
 #include "SpleeterThread.h"
 
 //==============================================================================
 /*
 */
-class SplitWindow  :     public juce::FileDragAndDropTarget, 
-                         public juce::DocumentWindow
+class SplitWindow : public juce::FileDragAndDropTarget,
+    public juce::DocumentWindow
 {
 public:
     SplitWindow(SplitGrainsAudioProcessor&);
@@ -28,18 +27,16 @@ public:
     void closeButtonPressed() override;
 
 
-    void paint (juce::Graphics&) override;
+    void paint(juce::Graphics&) override;
     bool isInterestedInFileDrag(const juce::StringArray& files);
     void filesDropped(const juce::StringArray& files, int x, int y);
-        
+
     void resized() override;
 
 private:
-    std::vector<float> mAudioPoints;
-    juce::String fileName{""};
-    const juce::File models_path = juce::File("C:\\Users\\User\\Documents\\Dev\\Libraries\\spleeterpp\\models");
-    std::error_code err;
-    juce::TextButton noSepB{ "No seperation" }, twoSepB{"2 stem seperation "}, fourSepB{ "4 stem seperation " }, fiveSepB { "5 stem seperation " };
+    juce::String fileName{ "" };
+    juce::TextButton noSepB{ "No seperation" }, twoSepB{ "2 stem seperation " }, fourSepB{ "4 stem seperation " }, fiveSepB{ "5 stem seperation " };
+    juce::TextEditor modelDir{ "Set the dierctory the models are stored in" }, outputDir{ "Output directory of the split stems" };
 
     bool buttonSelected = false;
     int splitType = 7;
@@ -47,7 +44,6 @@ private:
     ColourPalette colourPalette;
     SplitGrainsAudioProcessor& audioProcessor;
 
-    Spleeted spleeted;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SplitWindow)
 };

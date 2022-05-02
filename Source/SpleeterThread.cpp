@@ -10,11 +10,13 @@
 
 #include "SpleeterThread.h"
 
-SpleeterThread::SpleeterThread(SplitGrainsAudioProcessor& p, const std::string& f, spleeter::SeparationType t, juce::String& o ) : Spleeted(p), Thread("Stem seperation Thread")
+SpleeterThread::SpleeterThread(SplitGrainsAudioProcessor& p, const std::string& f, spleeter::SeparationType t, juce::String& o, juce::String& m) 
+	: Spleeted(p), Thread("Stem seperation Thread")
 {
 	file = f;
 	type = t;
 	output_dir = o;
+	model_dir = m;
 	startThread();
 }
 
@@ -31,7 +33,7 @@ void SpleeterThread::run()
 		if (!mml.lockWasGained()) {
 			return;
 		}
-		spleeted(file, type, output_dir);
+		spleeted(file, type, output_dir, model_dir);
 		signalThreadShouldExit();
 	}
 }
